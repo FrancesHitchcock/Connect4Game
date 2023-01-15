@@ -1,0 +1,188 @@
+*,
+*::after,
+*::before{
+    box-sizing: border-box;
+}
+
+/* layout */
+
+body,
+.heading-container,
+.message-container{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+body{
+    background-color: #eaeaea;
+    margin: 0;
+    font-family: 'Varela Round', sans-serif;
+    color: #111;
+}
+
+.heading-container{
+    padding: 0;
+    text-align: center;
+}
+
+.message-container{
+    font-size: 1.5rem;
+    padding-bottom: .5em;
+}
+
+.wrapper{
+    width: 100%;
+}
+
+.container{
+    width: 600px;
+    margin: 0 auto;
+}
+
+.ui-form{
+    width: 100%;
+    height: 100%;
+    padding: 20px;
+    position: absolute;
+    top: 0;
+    background-color: rgba(50, 50, 50, .9);
+    color: whitesmoke;
+    border-radius: 5px;
+    flex-direction: column;
+    justify-content: center;
+    gap: 30px;
+}
+
+fieldset{
+    border-radius: 5px;
+}
+
+input{
+    outline: none;
+    background-color: rgba(100, 100, 100, .9);
+    color: whitesmoke;
+    padding: .25em;
+    border-radius: 5px;
+    border: 1px solid rgb(100, 100, 100);
+    margin-left: 10px;
+    font-family: inherit;
+    font-size: 1rem;
+}
+
+.connect-text{
+    font-size: 3rem;
+    text-transform: uppercase;
+    color: #111;
+}
+
+.number-text{
+    font-size: 4rem;
+    color: red;
+}
+
+.game-container{
+    position: relative;
+}
+
+.slots{
+    height: 5vw;
+    max-height: 30px;
+    display: grid;
+    /* grid-template-columns attribute set in index.js */
+    gap: 2px;
+    margin-bottom: 2px;
+}
+
+.slot{
+    background-color: gray;
+    border: 10px solid #03317a;
+    border-radius: 5px;
+}
+
+.slot:hover,
+.slot:focus{
+    cursor: pointer;
+}
+
+.board{
+    aspect-ratio: 1 / 1;
+    display: grid;
+    /* grid-template attribute set in index.js */
+    gap: 2px;
+}
+
+.square{
+    background-color: #0444ad;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0;
+    padding: 0;
+    border-radius: 5px;
+}
+
+.disc{
+    width: 80%;
+    height: 80%;
+    border-radius: 50%;
+    background-color: gray;
+    box-shadow: 2px 2px 2px black inset;
+}
+
+/* typography */
+
+h1{
+    margin: 0;
+    line-height: 1;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+}
+
+legend{
+    font-size: 1.5rem;
+}
+
+p,
+label{
+    font-size: 1.25rem;
+}
+
+p,
+.input-container{
+    margin: 10px;
+}
+
+/* buttons */
+
+button{
+    font-family: inherit;
+    font-size: 2rem;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: .1em;
+    background-color: yellow;
+    padding: .5em;
+    border-radius: 5px;
+}
+
+button:hover,
+button:focus{
+    cursor: pointer;
+    background-image: linear-gradient(#FFFFB6, #EDED00);
+}
+
+button:active{
+    background-image: linear-gradient(#EDED00, #FFFFB6);
+}
+
+/* utility */
+
+.flex{
+    display: flex;
+}
+
+.hidden{
+    display: none;
+}
