@@ -192,7 +192,7 @@ button:active{
     display: none;
 }
 
-@media screen and (min-width: 1500px) {
+@media screen and (min-width: 1400px) {
     .container{
         width: 600px;
     }
