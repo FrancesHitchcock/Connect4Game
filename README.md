@@ -26,5 +26,11 @@ JavaScript skills used include:
 
 The game is designed to be played on a computer screen. It has limited responsiveness and is not suitable for mobile phones.
 
+Further development could include:
+
+- Addition of a New Game button
+- A Save Game button which sets the current status to local storage
+- Functionality for a single user to play against the computer.
+
 Frances Hitchcock, 15 January 2023
 
