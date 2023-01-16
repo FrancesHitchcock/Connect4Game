@@ -6,12 +6,14 @@ This project was built from scratch and is a development of the classic Connect 
 
 My own personal stretch goal was to achieve total scalability in the code. In this way the players choose the board size and the number of adjacent discs required to win. Thus, they can play a game of Connect 3, Connect 4 etc up to Connect 7!
 
+I also aimed to provide an engaging user experience, with a disc-drop effect using the setTimeout() method
+
 JavaScript skills used include:
 
 - Modular JavaScript
 - Nested for-loops
 - Dynamic rendering of html to update game status after each player's turn
-- Array methods forEach() and findLast()
+- Array methods including forEach(), filter(), slice() and findLast()
 - Updating styles dynamically, including grid properties
 - Separation of concerns, with larger functions broken up into smaller ones where appropriate.
 - Arrow functions for callbacks
@@ -19,9 +21,10 @@ JavaScript skills used include:
 - Data attributes
 - The ternary operator
 - Template literals
+- setTimeout()
 - Devising the logic to check systematically for a winning line and to check whether a "stack" is full.
 
-The game is designed to be played on a computer screen. It is not designed to be responsive and is not suitable for mobile phones.
+The game is designed to be played on a computer screen. It has limited responsiveness and is not suitable for mobile phones.
 
 Frances Hitchcock, 15 January 2023
 

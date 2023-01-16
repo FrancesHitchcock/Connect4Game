@@ -9,6 +9,7 @@ const numberText = document.getElementById("number-text")
 let boardActive = true
 let player1 = true
 let hasWinner = false
+let isStalemate = false
 let boardData = []
 
 let boardSize = 7
@@ -58,7 +59,7 @@ function handleButtonClick(e){
         //game title reflects the number of connected discs required to win
         numberText.textContent = `${discsToWin}`
 
-        // render the board according to the dimensions selected by the players
+        // render the board according to the dimensions selected by the players, and hide UI form
         updateStylesheet(board, slots, boardSize)
         getBoardData()
         renderBoard()
@@ -93,37 +94,30 @@ function handleColumnClick(column){
     const encouragingMessage = messagesArray[Math.floor(Math.random() * messagesArray.length)]
 
     if(boardActive){
-        // swap player names
-        let currentPlayer = player1 === true ? player2Name : player1Name
-        messageContainer.textContent = `${encouragingMessage}, ${currentPlayer}!`
-        lowlightMessage(messageContainer)
+        // create target column to determine whether "stack" is full
+        let targetColumn = []
 
-        // create temporary column to determine whether "stack" is full
-        let tempColumn = []
         boardData.forEach(row =>{
-            tempColumn.push(row[column])
+            targetColumn.push(row[column])
         })
 
-        const stackFull = tempColumn.every(square => {
+        const stackFull = targetColumn.every(square => {
             return square.occupied === true
         })
 
-        // if "stack" is not full the disc falls to the bottom, the board is rendered
-        // and the game status is determined. Player is swapped.
+        // if "stack" is not full the disc can be "dropped"
         if(!stackFull){
-            const targetDiscObj = tempColumn.findLast(square => {
+            const targetDiscObj = targetColumn.findLast(square => {
                 return square.occupied === false
             })
         
             targetDiscObj.color = player1 ? "red" : "yellow"
             targetDiscObj.owner = player1 ? "player 1" : "player 2"
             targetDiscObj.occupied = true
-        
-            renderBoard()
-            checkForWinner()
-            checkForStalemate()
-        
-            player1 === true ? player1 = false : player1 = true
+
+            const targetDiscElement = document.getElementById(`discId-${targetDiscObj.id}`)
+
+            dropDisc(targetDiscObj, targetDiscElement, targetColumn, encouragingMessage)
         }
         // if stack is full display message
         else{
@@ -131,6 +125,47 @@ function handleColumnClick(column){
             highlightMessage(messageContainer)
         }
     }
+}
+
+function dropDisc(targetDiscObj, targetDiscElement, targetColumn, encouragingMessage){
+    boardActive = false
+
+    const interval = 100
+    let tempDisc = {}
+
+    // make array of all empty squares in the current targetColumn
+    let stackUllage = targetColumn.filter(square => {
+        return square.occupied === false
+    })
+
+    // disc displays briefly in each square on its way "down"
+    for(let i = 0; i < stackUllage.length; i++){
+        setTimeout(() => {
+            tempDisc = document.getElementById(`discId-${targetColumn[i].id}`) 
+            tempDisc.style.backgroundColor = targetDiscObj.color
+            setTimeout(() => {
+                tempDisc.style.backgroundColor = "grey"
+            }, interval / 2)
+        }, interval * i)
+        
+    }
+
+    // disc displays at the bottom of the stack. If no winner and no stalemate then players are swapped
+    setTimeout(() => {
+        targetDiscElement.style.backgroundColor = targetDiscObj.color
+        boardActive = true
+        checkForWinner()
+        checkForStalemate()
+        if(!hasWinner && !isStalemate){
+            // swap player names
+            let currentPlayer = player1 === true ? player2Name : player1Name
+            messageContainer.textContent = `${encouragingMessage}, ${currentPlayer}!`
+            lowlightMessage(messageContainer)
+        }
+        player1 === true ? player1 = false : player1 = true
+        
+    }, interval * stackUllage.length)
+    
 }
 
 function checkForStalemate(){
@@ -145,8 +180,10 @@ function checkForStalemate(){
     })
 
     if(occupiedSquares.length === boardSize * boardSize && hasWinner === false){
+        isStalemate = true
         messageContainer.textContent = "No winner this time!"
         highlightMessage(messageContainer)
+        boardActive = false
     }
 }
 
@@ -234,6 +271,7 @@ function getBoardData(){
             tempRow.push({
                 row: `${rows}`,
                 column: `${columns}`,
+                id: `${rows}${columns}`,
                 occupied: false,
                 owner: "",
                 color: "grey",
@@ -251,7 +289,7 @@ function getBoardHtml(){
         boardRow.forEach(square => {
             boardHtml += `
             <div class="square" data-columnindex="${square.column}">
-                <div class="disc" style="background: ${square.color}" data-columnindex="${square.column}"></div>
+                <div class="disc" style="background: ${square.color}" data-columnindex="${square.column}" id="discId-${square.id}"></div>
             </div>`
         })
     })

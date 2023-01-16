@@ -5,10 +5,12 @@
 }
 
 /* layout */
+    
 
 body,
 .heading-container,
-.message-container{
+.message-container,
+.wrapper{
     display: flex;
     align-items: center;
     justify-content: center;
@@ -27,23 +29,26 @@ body{
 }
 
 .message-container{
-    font-size: 1.5rem;
+    font-size: 1.25rem;
     padding-bottom: .5em;
 }
 
 .wrapper{
     width: 100%;
-}
+    height: 100vh;
+    flex-direction: column;
+    }
 
 .container{
-    width: 600px;
+    width: 500px;
     margin: 0 auto;
 }
 
 .ui-form{
+    /* display property set in index.js  */
     width: 100%;
     height: 100%;
-    padding: 20px;
+    padding: 10px;
     position: absolute;
     top: 0;
     background-color: rgba(50, 50, 50, .9);
@@ -51,7 +56,7 @@ body{
     border-radius: 5px;
     flex-direction: column;
     justify-content: center;
-    gap: 30px;
+    gap: 20px;
 }
 
 fieldset{
@@ -67,29 +72,14 @@ input{
     border: 1px solid rgb(100, 100, 100);
     margin-left: 10px;
     font-family: inherit;
-    font-size: 1rem;
-}
-
-.connect-text{
-    font-size: 3rem;
-    text-transform: uppercase;
-    color: #111;
-}
-
-.number-text{
-    font-size: 4rem;
-    color: red;
-}
-
-.game-container{
-    position: relative;
+    font-size: .825rem;
 }
 
 .slots{
+     /* grid-template-columns property set in index.js */
     height: 5vw;
     max-height: 30px;
     display: grid;
-    /* grid-template-columns attribute set in index.js */
     gap: 2px;
     margin-bottom: 2px;
 }
@@ -106,9 +96,9 @@ input{
 }
 
 .board{
+    /* grid-template property set in index.js */
     aspect-ratio: 1 / 1;
     display: grid;
-    /* grid-template attribute set in index.js */
     gap: 2px;
 }
 
@@ -140,18 +130,33 @@ h1{
     align-items: center;
 }
 
-legend{
-    font-size: 1.5rem;
+.connect-text{
+    font-size: 3rem;
+    text-transform: uppercase;
+    color: #111;
 }
 
-p,
-label{
+.number-text{
+    font-size: 4rem;
+    color: red;
+}
+
+.game-container{
+    position: relative;
+}
+
+legend{
     font-size: 1.25rem;
 }
 
 p,
+label{
+    font-size: 1.125rem;
+}
+
+p,
 .input-container{
-    margin: 10px;
+    margin: 8px;
 }
 
 /* buttons */
@@ -185,4 +190,39 @@ button:active{
 
 .hidden{
     display: none;
+}
+
+@media screen and (min-width: 1500px) {
+    .container{
+        width: 600px;
+    }
+
+    .message-container{
+        font-size: 1.5rem;
+    }
+
+    .ui-form{
+        /* display property set in index.js  */
+        padding: 20px;
+        gap: 30px;
+    }
+
+    input{
+        font-size: 1rem;
+    }
+
+    legend{
+        font-size: 1.5rem;
+    }
+    
+    p,
+    label{
+        font-size: 1.25rem;
+    }
+    
+    p,
+    .input-container{
+        margin: 10px;
+    }
+    
 }
