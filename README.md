@@ -4,7 +4,7 @@
 
 This project was built from scratch and is a development of the classic Connect 4 game. The game is for two players. The object is to build a line of four adjacent discs either horizonally, vertically or diagonally. The player who achieves the line of four first is the winner. The players take it in turns to place their discs by "dropping" them into the columns. The "drop" is activated by clicking on the slot at the top of the chosen column (or anywhere on the column itself)
 
-My own personal stretch goal was to achieve total scalability in the code. In this way the players choose the board size and the number of adjacent discs required to win. Thus, they can play a game of Connect 3, Connect 4 etc up to Connect 7!
+My own personal stretch goal was to achieve flexibility in the code by using variables rather than hard-coded values. In this way the players choose the board size and the number of adjacent discs required to win. Thus, they can play a game of Connect 3, Connect 4 etc up to Connect 7!
 
 I also aimed to provide an engaging user experience, with a disc-drop effect using the setTimeout() method
 
